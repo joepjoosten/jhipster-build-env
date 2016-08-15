@@ -1,6 +1,11 @@
 FROM ubuntu:xenial
 
 RUN \
+  # configure the "jhipster" user
+  groupadd jhipster && \
+  useradd jhipster -s /bin/bash -m -g jhipster -G sudo && \
+  echo 'jhipster:jhipster' |chpasswd && \
+
   # install open-jdk 8
   apt-get update && \
   apt-get install -y openjdk-8-jdk && \
@@ -37,5 +42,9 @@ RUN \
     /var/lib/apt/lists/* \
     /tmp/* \
     /var/tmp/*
+
+USER jhipster
+WORKDIR "/home/jhipster"
+VOLUME ["/home/jhipster"]
 
 ENTRYPOINT /bin/bash
