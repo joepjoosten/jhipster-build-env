@@ -38,4 +38,4 @@ RUN \
     /tmp/* \
     /var/tmp/*
 
-ENTRYPOINT /bin/sh
+ENTRYPOINT /bin/bash
